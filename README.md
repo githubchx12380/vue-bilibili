@@ -6,7 +6,7 @@ https://www.bilibili.com/video/BV1vT4y137So
 
 
 技术栈
-vue + vuex + vue-router + ES6/7 + less + flex
+vue + vuex + vue-router + ES6/7 + less + flex + vant
 
 
 
