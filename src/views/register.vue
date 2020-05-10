@@ -6,14 +6,13 @@
         <login-text label="姓名" 
             style="margin:15.001px 0;" 
             placeholder="请输入姓名"
-            rule="^.{6,16}$"
+
             @contentWatch="res => model.name = res"
             >
         </login-text>
 
         <login-text label="账号" 
         placeholder="请输入账号"
-         rule="^.{6,16}$"
          @contentWatch="res => model.username = res"
          >
         </login-text>
@@ -21,7 +20,7 @@
         <login-text label="密码" 
             placeholder="请输入密码" 
             type="password"
-            rule="^.{6,16}$"
+
             @contentWatch="res => model.password = res"
         >
         </login-text>
@@ -47,7 +46,8 @@ export default {
     },
     methods:{
         async AjaxInsert() {
-            if(this.model.name && this.model.username&&this.model.password){
+            let rulg = /^.{6,16}&/
+            if(rulg.test(this.model.name) && rulg.test(this.model.username)&& rulg.test(this.model.password)){
                 const res =  await this.$http.post('/register',this.model)
                 this.$msg.fail(res.data.msg)
                 localStorage.setItem('token',res.data.objtoken) 

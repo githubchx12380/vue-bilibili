@@ -2,7 +2,7 @@
   <div @click="pathPush" v-if="detailitem">
       <div class="detailItem">
           <div class="imgparent">
-              <img :src="detailitem.img" alt="" style="width:100%">
+               <img :src="detailitem.img"  alt="" style="width:100%;height:27.778vw;">
               <div class="bottom">
                   <div class="icon-play2"><span class="video">1233</span></div>
                   <div class="icon-file-text"> <span class="comment">{{!detailitem.commentlen ? 66 : detailitem.commentlen}}</span> </div>

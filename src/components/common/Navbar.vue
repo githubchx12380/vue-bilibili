@@ -21,11 +21,16 @@ export default {
             imgUrl:''
         }
     },
-    async mounted() {
-        if(localStorage.getItem('token')){
+    methods:{
+        async NavInit() {
+            if(localStorage.getItem('token')){
             const res = await this.$http.get('/user/' + localStorage.getItem('id'))
             this.imgUrl = res.data[0].user_img
+            }
         }
+    },
+    mounted() {
+        this.NavInit()
     }
 }
 </script>

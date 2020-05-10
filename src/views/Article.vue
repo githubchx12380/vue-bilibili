@@ -1,6 +1,6 @@
 <template>
   <div v-if="model">
-      <nav-bar></nav-bar>
+      <nav-bar></nav-bar> 
       <div class="detailinfo">
          <div class="video">
               <video controls="controls" :src="model.content"></video>
@@ -36,6 +36,7 @@
       </div>
       <comment-title :dataLength="lens" @Postcomment="PostSuccess" ref="commentIpt"  />
       <comment @lengthselect="len => lens = len" ref="commentPulish"  @publishClick="PostChildClick" />
+          
       </div>
      
   </div>
@@ -59,7 +60,8 @@ export default {
                 article_id:null
             },
             collectionActive:null,
-            subscritionActive:null
+            subscritionActive:null,
+           
         }
     },
     components:{

@@ -18,13 +18,10 @@ export default {
             content:''
         }
     },
-    props:['label','placeholder','type','rule'],
+    props:['label','placeholder','type'],
     watch:{
         content() {
-            const rug = new RegExp(this.rule)
-            if(rug.test(this.content)){
                this.$emit('contentWatch',this.content)
-            }
         }
     }
 }

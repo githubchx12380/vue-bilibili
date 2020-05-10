@@ -1,5 +1,5 @@
 <template>
-  <div class="home" v-if="category">
+  <div class="home">
     <nav-bar></nav-bar>
     <van-tabs v-model="active" swipeable sticky>
       <van-tab v-for="(item,index) in category" :key="index" :title="item.title">
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       category: [],
-      active: 0
+      active: 0,
     };
   },
   components: {
@@ -68,10 +68,10 @@ export default {
     },
     onLoad() {
         const categoryitem = this.categoryItem()
-        setTimeout(() => {
+           setTimeout(() => {
             categoryitem.page += 1
             this.selectArticle()  
-        },1000)
+          },1000)
     },
     categoryItem() {
       const categoryitem = this.category[this.active];
@@ -88,7 +88,6 @@ export default {
   },
   created() {
     this.selectCategory();
-    console.log(this.$route)
   },
 };
 </script>

@@ -8,7 +8,9 @@ import http from '../http'
 import '@/assets/style.css'
 Vue.prototype.$http = http
 Vue.prototype.$msg = Toast
+
 Vue.use(vant)
+
 
 new Vue({
   router,

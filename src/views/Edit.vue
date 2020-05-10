@@ -1,6 +1,6 @@
 <template>
   <div v-if="model" class="editViews">
-      <div style="margin-bottom:2.778vw;"><nav-bar></nav-bar></div>
+      <div style="margin-bottom:2.778vw;"><nav-bar ref="navbar"></nav-bar></div>
       <div class="uploadfile">
           <div class="uploadimg"><van-uploader preview-size="100vw" :after-read="afterRead" /></div>
           <edit-banner left="头像">
@@ -84,6 +84,7 @@ export default {
            const res =  await this.$http.post('/upload',fromdata)
            this.model.user_img = res.data.url
            this.UserUpdate()
+           this.$refs.navbar.NavInit()
        },
        async UserUpdate() {
            const res = await this.$http.post('/update/' + localStorage.getItem('id'),this.model)
