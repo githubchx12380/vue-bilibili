@@ -6,6 +6,7 @@ import login from '@/views/Login.vue'
 import userinfo from '@/views/userinfo.vue'
 import edit from '@/views/Edit.vue'
 import article from '@/views/Article.vue'
+import editcategory from '@/views/EditCategory.vue'
 Vue.use(VueRouter)
   const routes = [
      {
@@ -40,7 +41,11 @@ Vue.use(VueRouter)
      {
        path:'/article/:id',
        component:article
-     }
+     },
+    {
+      path:'/editcategory',
+      component:editcategory
+    }
   ]
 
 const router = new VueRouter({
