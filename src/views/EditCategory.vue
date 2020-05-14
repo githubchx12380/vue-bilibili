@@ -3,11 +3,11 @@
       <nav-bar></nav-bar>
      <van-divider dashed :style="{ color: '#1a73e8', borderColor: '#1a73e8', padding: '0 16px' }">现有栏目</van-divider>
         <div class="new-category newcategory">
-            <p @click="newCategoryClick(index)" v-for="(item,index) in newCat" :key="index">{{item.title}}</p>
+            <p @click="handleCategoryClick(index)" v-for="(item,index) in newCat" :key="index">{{item.title}}</p>
         </div>
      <van-divider dashed :style="{ color: '#ee0a24', borderColor: '#ee0a24', padding: '0 16px' }">已删除栏目</van-divider>
         <div class="new-category delcategory">
-           <p @click="delCategoryClick(index)" v-for="(item,index) in delCat" :key="index">{{item.title}}</p>
+            <p @click="deleteCategoryClick(index)" v-for="(item,index) in delCat" :key="index">{{item.title}}</p>
         </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     data() {
         return {
             newCat:[],
-            delCat:[],
+            delCat:[]
         }
     },
     components:{
@@ -29,19 +29,34 @@ export default {
             const res = await this.$http.get('/category')
             this.newCat = res.data
         },
-        newCategoryClick(index) {
+        handleCategoryClick(index) {
+           if(this.newCat.length < 4) {   
+              this.$msg.fail('最少保留三个栏目')
+              return
+           }
             this.delCat.push(this.newCat[index])
             this.newCat.splice(index,1)
         },
-        delCategoryClick(index) {
+        deleteCategoryClick(index) {
             this.newCat.push(this.delCat[index])
             this.delCat.splice(index,1)
         }
     },
+    watch:{
+        newCat() {
+            localStorage.setItem('newCat',JSON.stringify(this.newCat))
+            localStorage.setItem('delCat',JSON.stringify(this.delCat))
+        }
+    },
     created() {
+        if(localStorage.getItem('newCat')&&localStorage.getItem('delCat')) {
+            this.newCat = JSON.parse(localStorage.getItem('newCat'))
+            this.delCat = JSON.parse(localStorage.getItem('delCat'))
+            return
+        }
+
         this.SelectCategory()
     }
-   
 }
 </script>
 

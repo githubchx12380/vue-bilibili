@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" v-if="category">
     <nav-bar></nav-bar>
     <div class="categorytab">
       <div class="category-ico" @click="$router.push('/editcategory')"><van-icon name="setting-o" /></div>
@@ -41,9 +41,18 @@ export default {
     NavBar,
     cover
   },
-
+  activated() {
+    if(localStorage.getItem('newCat')) {
+        let newCat = JSON.parse(localStorage.getItem('newCat'))
+        this.category = this.changeCategory(newCat)
+        this.selectArticle();
+    }
+  },
   methods: {
     async selectCategory() {
+      if(localStorage.getItem('newCat')) {
+        return
+      }
       const res = await this.$http.get("/category");
       this.category = this.changeCategory(res.data);
       this.selectArticle();
