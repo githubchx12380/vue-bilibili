@@ -46,7 +46,7 @@ export default {
     },
     methods:{
         async AjaxInsert() {
-            let rulg = /^.{6,16}&/
+            let rulg = /^.{6,16}$/
             if(rulg.test(this.model.name) && rulg.test(this.model.username)&& rulg.test(this.model.password)){
                 const res =  await this.$http.post('/register',this.model)
                 this.$msg.fail(res.data.msg)
