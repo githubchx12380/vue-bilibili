@@ -2,7 +2,7 @@ import axios from 'axios'
 import router from './src/router'
 import Vue from 'vue'
 const http = axios.create({
-    baseURL:'http://127.0.0.1:3000/web/api'
+    baseURL:'http://112.74.99.5:3000/web/api'
 })
 
 
