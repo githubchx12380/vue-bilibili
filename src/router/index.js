@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '@/views/Home.vue'
-import register from '@/views/register.vue'
-import login from '@/views/Login.vue'
-import userinfo from '@/views/userinfo.vue'
-import edit from '@/views/Edit.vue'
-import article from '@/views/Article.vue'
-import editcategory from '@/views/EditCategory.vue'
+const Home = () => import('@/views/Home.vue')
+const register = ()=>import('@/views/register.vue')
+const login = ()=>import('@/views/Login.vue')
+const userinfo = ()=>import('@/views/userinfo.vue')
+const edit = ()=>import('@/views/Edit.vue')
+const article = ()=>import('@/views/Article.vue')
+const editcategory = ()=>import('@/views/EditCategory.vue')
 Vue.use(VueRouter)
   const routes = [
      {
@@ -54,7 +54,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from,next) => {
-  if(!localStorage.getItem('token')&&!localStorage.getItem('id')&&to.meta.istoken == true){
+  if((!localStorage.getItem('token') || !localStorage.getItem('id'))&&to.meta.istoken == true){
     router.push('/login')
     Vue.prototype.$msg.fail('请重新登录')
     return
